@@ -5,6 +5,12 @@
 
 FROM xita/oracle2
 
-RUN echo "`/sbin/ifconfig eth0 | grep 'inet addr' | cut -d: -f2 | awk '{print $1 }'` $HOSTNAME oracle" > /etc/hosts
+# RUN echo "`/sbin/ifconfig eth0 | grep 'inet addr' | cut -d: -f2 | awk '{print $1 }'` $HOSTNAME oracle" > /etc/hosts
 
-RUN /etc/init.d/network restart
+# RUN /etc/init.d/network restart
+
+# Oracle User Settings
+
+RUN echo foobar | passwd oracle --stdin
+
+ADD 90-nproc.conf /etc/security/limits.d/90-nproc.conf
